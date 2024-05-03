@@ -48,8 +48,6 @@ function ready() {
   var add_cart = document.getElementsByClassName("add-cart");
   for (var i = 0; i < add_cart.length; i++) {
     var button = add_cart[i];
-    console.log(add_cart[i].length);
-
     button.addEventListener("click", add_cart_click);
   }
 }
@@ -66,6 +64,8 @@ function quantityChange(event) {
     input.value = 1;
   }
   update_total();
+  //////////>
+  updateCartIcon();
 }
 //add_cart_click
 function add_cart_click(event) {
@@ -75,7 +75,12 @@ function add_cart_click(event) {
   var price = shopProduct.getElementsByClassName("price")[0].innerText;
   var productImg = shopProduct.getElementsByClassName("product_img")[0].src;
   add_product_to_cart(title, price, productImg);
+  var jcd = document.getElementById("nnnn");
+  jcd.classList.remove("hideee");
+
   update_total();
+  ///////////>
+  updateCartIcon();
 }
 //add_product_to_cart
 function add_product_to_cart(title, price, productImg) {
@@ -90,6 +95,7 @@ function add_product_to_cart(title, price, productImg) {
       return;
     }
   }
+
   var cartBoxeContent = `
           <img class="cart_img" src="${productImg}" alt="" />
           <div class="detail_box">
@@ -108,6 +114,8 @@ function add_product_to_cart(title, price, productImg) {
   cartShopBox
     .getElementsByClassName("cart_quantity")[0]
     .addEventListener("change", quantityChange);
+  /////////>>>>>>>>>>
+  updateCartIcon();
 }
 //update total
 function update_total() {
@@ -115,6 +123,11 @@ function update_total() {
   var cartBoxes = cart_content.getElementsByClassName("cart_box");
   var total = 0;
   for (var i = 0; i < cartBoxes.length; i++) {
+    console.log("dshvksd", cartBoxes.length);
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    var jcd = document.getElementById("nnnn");
+    jcd.innerHTML = cartBoxes.length;
+
     var cart_box = cartBoxes[i];
     var priceElement = cart_box.getElementsByClassName("cart_price")[0];
     var quantityElement = cart_box.getElementsByClassName("cart_quantity")[0];
@@ -125,4 +138,16 @@ function update_total() {
     total = Math.round(total * 100) / 100;
   }
   document.getElementsByClassName("total_price")[0].innerText = "$" + total;
+}
+//code quantity in cart item
+function updateCartIcon() {
+  var cartBoxes = document.getElementsByClassName("cart_box");
+  var quantity = 0;
+  for (var i = 0; i < cartBoxes.length; i++) {
+    var cart_box = cartBoxes[i];
+    var quantityElement = cart_box.getElementsByClassName("cart_quantity")[0];
+    quantity += parseInt(quantityElement.value);
+  }
+  var cartIcon = document.querySelector("#cart_icon");
+  cartIcon.setAttribute("data-quantity", quantity);
 }
