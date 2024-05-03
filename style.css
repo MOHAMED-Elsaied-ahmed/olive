@@ -620,7 +620,7 @@ textarea{
     background: var(--bg-color);
     box-shadow: -2px 0 4px hsl( 0 4% 15% /10% );
     background-color:white;
-    z-index: 80000000;
+    z-index: 800000;
     overflow: scroll;
     height: 100vh;
 
@@ -716,7 +716,24 @@ row-gap: 0.5rem;
     display: none;
 
  }
+ .hideee{
+    display: none;
+
+ }
  .boder{
     box-shadow: -2px 0 4px hsl( 0 4% 15% /10% );
 
  }
+#nnnn{
+    position:fixed;
+    color:white;
+    z-index:788;
+    margin-left: 2.5rem;
+    background-color: red;
+    width: 18px;
+    height: 18px;
+    border-radius: 7px;
+    margin-top: 0.3rem;
+    text-align: center;
+    
+}
